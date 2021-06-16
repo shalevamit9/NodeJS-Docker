@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res, next) => {
+app.get('/', async (req, res, next) => {
   res.send('<h2>Hi there!!</h2>');
 });
 
