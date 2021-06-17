@@ -5,8 +5,9 @@ COPY package.json .
 # RUN is an image build step, the state of the container after a RUN command will be committed to the container image
 # RUN npm install
 
-# conditional statement script
+# access the build arg NODE_ENV
 ARG NODE_ENV
+# conditional statement script
 # spaces in this if is IMPORTANT!!!!!!!!!!!
 RUN if [ "${NODE_ENV}" = "development" ]; \
   then npm install; \
