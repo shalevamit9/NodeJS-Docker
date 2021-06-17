@@ -2,9 +2,12 @@ version: "3"
 services: 
   node-app:
     build: 
+      # context will contain the path to the Dockerfile
       context: .
+      # args will contain variables to send to the Dockerfile when building the image
       args: 
         NODE_ENV: production
     environment: 
       - NODE_ENV=production
+    # override the command from Dockerfile
     command: node app.js
