@@ -1,16 +1,9 @@
 version: "3"
-services:
+services: 
   node-app:
-    # build receives the path to the Dockerfile
     build: .
-    # ports receives a list of port and they are seperated by \n and -, the - signifies a list
+    # for now the port is the same but port for development and production environment can be different
     ports: 
       - "3000:3000"
-      # - "4000:4000"
-    volumes:
-      - ./:/app
-      - /app/node_modules
     environment: 
       - PORT=3000
-    # env_file: 
-    #   - ./.env
