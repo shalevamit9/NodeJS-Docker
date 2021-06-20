@@ -7,3 +7,22 @@ services:
       - "3000:3000"
     environment: 
       - PORT=3000
+    # will finish the execution of mongo container first before executing the node-app container.
+    # still need to make sure in the app itself (source code) that if the connection to the db failed
+    # it needs to keep retrying to connect, because docker/docker-compose doesn't handle it completely.
+    depends_on: 
+      - mongo
+
+  mongo:
+    # dockerhub documentation got good information about the image, and all other images as whole
+    image: mongo
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=AdminMan
+      - MONGO_INITDB_ROOT_PASSWORD=secretpassword
+    volumes: 
+      # using named volume
+      - mongo-db:/data/db
+
+# this volumes section is for named volumes, like declaring a variable, to let everyother container know that it exist and can access it.
+volumes: 
+  mongo-db:
