@@ -23,6 +23,6 @@ services:
       # using named volume
       - mongo-db:/data/db
 
-# this volumes section is for named volumes, like declaring a variable, to let everyother container know that it exist and can access it.
+# this volumes section is for named volumes, like declaring a variable, to let every other container know that it exist and can access it.
 volumes: 
   mongo-db:
