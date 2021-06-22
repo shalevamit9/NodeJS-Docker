@@ -23,6 +23,9 @@ services:
       # using named volume
       - mongo-db:/data/db
 
+  redis:
+    image: redis
+
 # this volumes section is for named volumes, like declaring a variable, to let every other container know that it exist and can access it.
 volumes: 
   mongo-db:
