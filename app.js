@@ -37,7 +37,7 @@ app.use(session({
   cookie: {
     httpOnly: true, // true will disable client side javascript the access to the cookie
     secure: false, // true will enable the cookie only for HTTPS
-    maxAge: 60000 // the time that the cookie will live in ms
+    maxAge: 60000 // the time that the cookie will live in ms. in a production env maxAge need to be higher, maybe a couple of hours
   },
   resave: false,
   saveUninitialized: false,
