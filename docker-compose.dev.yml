@@ -14,8 +14,6 @@ services:
       - NODE_ENV=development
       - MONGO_USER=AdminMan
       - MONGO_PASSWORD=secretpassword
-      - REDIS_URI=
-      - REDIS_PORT=
       - SESSION_SECRET=2484082658f547c9e8e4c7a50564065d209bfd4f362a2e872dab952ecc11dbcd27b56af44b345cae7070862e1a856585f647339d43d7a9111b0fa495e52df14d
     # override the command from Dockerfile
     command: npm run dev
