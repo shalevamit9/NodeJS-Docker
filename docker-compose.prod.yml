@@ -11,3 +11,8 @@ services:
       - NODE_ENV=production
     # override the command from Dockerfile
     command: node app.js
+
+  nginx:
+    # map the outside port to 80 and the inside port to 80, 80 is the port defined for the nginx load balancer
+    ports: 
+      - "80:80"

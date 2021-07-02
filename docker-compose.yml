@@ -2,9 +2,10 @@ version: "3"
 services: 
   node-app:
     build: .
+    # opened ports can be removed after adding nginx load balancer
     # for now the port is the same but port for development and production environment can be different
-    ports: 
-      - "3000:3000"
+    # ports: 
+    #   - "3000:3000"
     environment: 
       - PORT=3000
     # will finish the execution of mongo container first before executing the node-app container.
@@ -25,6 +26,10 @@ services:
 
   redis:
     image: redis
+
+  # nginx will be the container thats open to the outside requests, meaning the open ports in node-app service can be removed
+  nginx:
+    image: nginx:stable-alpine
 
 # this volumes section is for named volumes, like declaring a variable, to let every other container know that it exist and can access it.
 volumes: 

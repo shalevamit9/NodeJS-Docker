@@ -22,3 +22,10 @@ services:
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=AdminMan
       - MONGO_INITDB_ROOT_PASSWORD=secretpassword
+
+  nginx:
+    # map the outside port to 3000 and the inside port to 80, 80 is the port defined for the nginx load balancer
+    ports: 
+      - "3000:80"
+    volumes: 
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro

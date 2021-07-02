@@ -26,9 +26,26 @@ let redisClient = redis.createClient({
 
 const app = express();
 
+app.use('/', async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, PATCH');
+
+  next();
+});
+
+// route for testing nginx load balancer
+app.get('/api/v1', async (req, res) => {
+  res.send('<h2>Hi There</h2>');
+  console.log('im here in different container');
+});
+
 // Parsing middlewares
 app.use(jsonParser());
 app.use(urlencodedParser({ extended: true }));
+
+// enabling the 'trust proxy' setting will allow the req.ip and req.ips to be populated
+// with the list of ips in the X-Forwarded-For header
+app.enable('trust proxy');
 
 // Session middlewares
 app.use(session({
@@ -43,14 +60,6 @@ app.use(session({
   saveUninitialized: false,
   rolling: true
 }));
-
-app.use('/', (req, res, next) => {
-  if (req.session) {
-    console.log(req.session);
-  }
-
-  next();
-})
 
 // Routes
 app.use('/api/v1/posts', postRouter);
