@@ -2,6 +2,7 @@ version: "3"
 services: 
   node-app:
     build: .
+    # image: # {name of the image published in docker hub, can be an image created by my self} 
     # opened ports can be removed after adding nginx load balancer
     # for now the port is the same but port for development and production environment can be different
     # ports: 
