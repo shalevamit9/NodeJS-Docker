@@ -7,10 +7,19 @@ services:
       # args will contain variables to send to the Dockerfile when building the image
       args: 
         NODE_ENV: production
+    # use ${} to make docker-compose take the environment variables from the machine running the server
     environment: 
       - NODE_ENV=production
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - SESSION_SECRET=${SESSION_SECRET}
     # override the command from Dockerfile
     command: node app.js
+
+  mongo:
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
 
   nginx:
     # map the outside port to 80 and the inside port to 80, 80 is the port defined for the nginx load balancer
